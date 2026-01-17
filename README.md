@@ -116,8 +116,6 @@ Save as: README.md
 
 ---
 
-## 更新日志
-- **2026-01**：发布 UyZh-FolkSpeech。
 
 ---
 
@@ -153,43 +151,3 @@ Save as: README.md
 - `license_flag`：`public` / `restricted`
 ---
 
-## 仓库结构
-
-```text
-UyZh-FolkSpeech/
-  README.md
-  README_EN.md
-  LICENSE
-  CITATION.cff
-  CHANGELOG.md
-
-  data/
-    processed/
-      uyzh_folkspeech.tsv
-      uyzh_folkspeech.jsonl
-    splits/
-      train_ids.txt
-      dev_ids.txt
-      test_ids.txt
-
-  audio/                     
-    m4a/
-      0001.m4a
-      ...
-    audio_manifest.tsv
-
-  metadata/
-    schema.json
-    sources.csv
-    stats/
-
-  scripts/
-    load_data.py
-    qc_checks.py
-    make_splits.py
-    eval_bleu.py            
-
-  paper/
-    manuscript.docx
-    figures/
-    tables/
