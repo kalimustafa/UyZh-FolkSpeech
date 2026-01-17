@@ -10,7 +10,7 @@
 ![Language](https://img.shields.io/badge/Language-Uyghur%20%7C%20Chinese-brightgreen)
 ![Task](https://img.shields.io/badge/Task-MT%20%7C%20NLP%20%7C%20Speech-informational)
 
-[English](README_EN.md) • [中文主页](README.md) • [Dataset](#dataset) •Citation](#citation) • [Contact](#contact)
+[English](README_EN.md) • [中文主页](README.md) • [Dataset](#dataset)• [Contact](#contact)
 
 </div>
 
