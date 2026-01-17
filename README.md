@@ -61,18 +61,6 @@ Save as: README.md
 
 <div align="center">
 
-# UyZh-FolkSpeech
 
-**面向低资源场景的维吾尔语–汉语平行短句数据集（谚语 + 日常表达，可选配套录音）**
-
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-![Language](https://img.shields.io/badge/Language-%E7%BB%B4%E5%90%BE%E5%B0%94%E8%AF%AD%20%7C%20%E6%B1%89%E8%AF%AD-brightgreen)
-![Task](https://img.shields.io/badge/Task-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%20%7C%20NLP%20%7C%20%E8%AF%AD%E9%9F%B3-informational)
-
-[中文主页](README.md) • [English](README_EN.md) • [数据集](#数据集) • [快速开始](#快速开始) • [引用](#引用) • [联系](#联系)
-
-</div>
-
----
 
 
