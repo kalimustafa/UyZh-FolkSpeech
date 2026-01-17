@@ -172,7 +172,7 @@ UyZh-FolkSpeech/
       dev_ids.txt
       test_ids.txt
 
-  audio/                      # 可选
+  audio/                     
     m4a/
       0001.m4a
       ...
@@ -187,7 +187,7 @@ UyZh-FolkSpeech/
     load_data.py
     qc_checks.py
     make_splits.py
-    eval_bleu.py              # 可选：MT 评测示例
+    eval_bleu.py            
 
   paper/
     manuscript.docx
