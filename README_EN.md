@@ -14,11 +14,8 @@
 
 </div>
 
----
 
-## Updates
-- **2026-01**: Initial release of **UyZh-FolkSpeech**  
----
+
 
 ## Overview
 
@@ -41,7 +38,6 @@ For the proverb subset, we optionally provide **creator-recorded audio** and a m
 | Daily phrases | 276 |
 | Optional audio clips (proverbs) | 273 |
 
-> If you later extend to “1000 sentences (Uy 500 + Zh 500)”, update this table and the release notes accordingly.
 
 ### Recommended schema (fields)
 Each record is recommended to include the following fields (TSV/JSONL are both acceptable):
