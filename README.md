@@ -7,7 +7,7 @@ Save as: README.md
 
 # UyZh-FolkSpeech
 
-**面向低资源场景的维吾尔语–汉语平行短句数据集（谚语 + 日常表达，可选配套录音）**
+**面向低资源场景的维吾尔语–汉语平行短句数据集**
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![Language](https://img.shields.io/badge/Language-%E7%BB%B4%E5%90%BE%E5%B0%94%E8%AF%AD%20%7C%20%E6%B1%89%E8%AF%AD-brightgreen)
@@ -26,7 +26,7 @@ Save as: README.md
 
 ## 项目简介
 
-**UyZh-FolkSpeech** 是一个面向低资源场景的**维吾尔语–汉语平行短句数据集**，聚焦新疆地区常见的**民间谚语**与**日常口语表达**，面向机器翻译、跨语言检索、对话系统与（可选）语音相关任务的训练与评测。
+**UyZh-FolkSpeech** 是一个面向低资源场景的**维吾尔语–汉语平行短句数据集**，聚焦新疆地区常见的**民间谚语**与**日常口语表达**，面向机器翻译、跨语言检索、对话系统与语音相关任务的训练与评测。
 
 数据通过 **OCR/转写 → 人工校对 → 句级对齐 → 规范化清洗 → 质量检查** 的流水线整理；对于谚语子集，可选提供**创作者录音**与清单映射（manifest），以支持可复现的语音实验与多模态研究。
 
@@ -34,7 +34,7 @@ Save as: README.md
 
 ## 数据集
 
-### 数据规模（按你最终版本改）
+### 数据规模
 | 项目 | 数量 |
 |---|---:|
 | 平行记录总数 | 549 |
@@ -46,18 +46,18 @@ Save as: README.md
 
 ### 字段设计（推荐 schema）
 每条样本建议包含以下字段（TSV/JSONL 均可）：
-- `id`：稳定唯一编号（如 `P0001`/`D0001` 或纯数字）
+- `id`：稳定唯一编号
 - `uy`：维吾尔文文本（UTF-8）
 - `zh`：中文文本（UTF-8）
 - `subset`：`proverb` / `daily_phrase`
 - `source_type`：`online` / `field`
-- `tags`：最小主题标签（可选）
-- `audio_file`：音频文件名（可选，仅谚语子集）
-- `license_flag`：`public` / `restricted`（若存在不可公开来源，用于区分发布范围）
+- `tags`：最小主题标签
+- `audio_file`：音频文件名
+- `license_flag`：`public` / `restricted`
 
 ---
 
-## 仓库结构（建议）
+## 仓库结构
 
 ```text
 UyZh-FolkSpeech/
@@ -76,7 +76,7 @@ UyZh-FolkSpeech/
       dev_ids.txt
       test_ids.txt
 
-  audio/                      # 可选（谚语子集）
+  audio/                      # 
     m4a/
       0001.m4a
       ...
@@ -91,7 +91,7 @@ UyZh-FolkSpeech/
     load_data.py
     qc_checks.py
     make_splits.py
-    eval_bleu.py              # 可选：MT 评测示例
+    eval_bleu.py              #
 
   paper/
     manuscript.docx
@@ -119,7 +119,7 @@ Save as: README.md
 ---
 
 ## 更新日志
-- **2026-01**：发布 UyZh-FolkSpeech 初版（平行短句 + 元数据；谚语子集可选音频）。
+- **2026-01**：发布 UyZh-FolkSpeech。
 
 ---
 
@@ -133,7 +133,7 @@ Save as: README.md
 
 ## 数据集
 
-### 数据规模（按你最终版本改）
+### 数据规模
 | 项目 | 数量 |
 |---|---:|
 | 平行记录总数 | 549 |
@@ -141,22 +141,21 @@ Save as: README.md
 | 日常表达（daily phrases） | 276 |
 | 可选音频（谚语子集） | 273 |
 
-> 若你后续升级为“1000句（维500+汉500）”，只需更新本表与 release 说明即可。
 
-### 字段设计（推荐 schema）
+
+### 字段设计
 每条样本建议包含以下字段（TSV/JSONL 均可）：
 - `id`：稳定唯一编号（如 `P0001`/`D0001` 或纯数字）
 - `uy`：维吾尔文文本（UTF-8）
 - `zh`：中文文本（UTF-8）
 - `subset`：`proverb` / `daily_phrase`
 - `source_type`：`online` / `field`
-- `tags`：最小主题标签（可选）
-- `audio_file`：音频文件名（可选，仅谚语子集）
-- `license_flag`：`public` / `restricted`（若存在不可公开来源，用于区分发布范围）
-
+- `tags`：最小主题标签
+- `audio_file`：音频文件名
+- `license_flag`：`public` / `restricted`
 ---
 
-## 仓库结构（建议）
+## 仓库结构
 
 ```text
 UyZh-FolkSpeech/
@@ -175,7 +174,7 @@ UyZh-FolkSpeech/
       dev_ids.txt
       test_ids.txt
 
-  audio/                      # 可选（谚语子集）
+  audio/                      # 可选
     m4a/
       0001.m4a
       ...
