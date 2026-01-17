@@ -1,7 +1,4 @@
-<!-- =======================
-UyZh-FolkSpeech README (EN)
-Save as: README_EN.md
-======================= -->
+
 
 <div align="center">
 
