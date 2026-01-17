@@ -33,10 +33,10 @@ For the proverb subset, we optionally provide **creator-recorded audio** and a m
 ### Statistics (edit to match your final release)
 | Item | Count |
 |---|---:|
-| Total aligned records | 549 |
-| Proverbs | 273 |
-| Daily phrases | 276 |
-| Optional audio clips (proverbs) | 273 |
+| Total aligned records | 1098 |
+| Proverbs | 546 |
+| Daily phrases | 552 |
+| Optional audio clips (proverbs) | 546 |
 
 
 ### Recommended schema (fields)
