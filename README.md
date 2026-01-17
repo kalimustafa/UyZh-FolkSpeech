@@ -1,75 +1,66 @@
 <!-- =======================
-UyZh-FolkSpeech README
-Copy to: README.md
+UyZh-FolkSpeech README (ZH)
+Save as: README.md
 ======================= -->
 
 <div align="center">
 
 # UyZh-FolkSpeech
 
-**A Uyghur–Chinese parallel dataset of proverbs and daily phrases (with optional creator-recorded audio)**
+**面向低资源场景的维吾尔语–汉语平行短句数据集（谚语 + 日常表达，可选配套录音）**
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-![Language](https://img.shields.io/badge/Language-Uyghur%20%7C%20Chinese-brightgreen)
-![Task](https://img.shields.io/badge/Task-MT%20%7C%20NLP%20%7C%20Speech-informational)
+![Language](https://img.shields.io/badge/Language-%E7%BB%B4%E5%90%BE%E5%B0%94%E8%AF%AD%20%7C%20%E6%B1%89%E8%AF%AD-brightgreen)
+![Task](https://img.shields.io/badge/Task-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%20%7C%20NLP%20%7C%20%E8%AF%AD%E9%9F%B3-informational)
 
-[中文主页](README.md) • [English](README_EN.md) • [Paper](#citation) • [Dataset](#dataset) • [Quickstart](#quickstart) • [Contact](#contact)
+[中文主页](README.md) • [English](README_EN.md) • [数据集](#数据集) • [快速开始](#快速开始) • [引用](#引用) • [联系](#联系)
 
 </div>
 
 ---
 
-## News
-- **2026-01**: Initial release of **UyZh-FolkSpeech549** (549 aligned records; optional audio subset for proverbs).
+## 更新日志
+- **2026-01**：发布 UyZh-FolkSpeech 初版（平行短句 + 元数据；谚语子集可选音频）。
 
 ---
 
-## Overview
+## 项目简介
 
-**UyZh-FolkSpeech549** is a curated **Uyghur–Chinese parallel short-text dataset** focusing on culturally grounded **proverbs** and practical **daily expressions**.  
-It is designed for **machine translation fine-tuning**, **cross-lingual evaluation**, and (optionally) **speech-related tasks** by pairing Uyghur text with creator-recorded audio.
+**UyZh-FolkSpeech** 是一个面向低资源场景的**维吾尔语–汉语平行短句数据集**，聚焦新疆地区常见的**民间谚语**与**日常口语表达**，面向机器翻译、跨语言检索、对话系统与（可选）语音相关任务的训练与评测。
 
-**Key features**
-- **549** aligned Uyghur–Chinese records (**273 proverbs + 276 daily phrases**)
-- Stable **IDs**, subset labels, metadata fields, and recommended splits
-- Optional **273** creator-recorded Uyghur audio clips (for proverb subset) + manifest mapping
-- Practical scripts for loading / QA checks / splits / (optional) MT fine-tuning & BLEU evaluation
+数据通过 **OCR/转写 → 人工校对 → 句级对齐 → 规范化清洗 → 质量检查** 的流水线整理；对于谚语子集，可选提供**创作者录音**与清单映射（manifest），以支持可复现的语音实验与多模态研究。
 
 ---
 
-## Dataset
+## 数据集
 
-### Statistics
-| Item | Count |
+### 数据规模（按你最终版本改）
+| 项目 | 数量 |
 |---|---:|
-| Total aligned records | 549 |
-| Proverbs | 273 |
-| Daily phrases | 276 |
-| Optional audio clips (proverbs) | 273 |
+| 平行记录总数 | 549 |
+| 谚语（proverbs） | 273 |
+| 日常表达（daily phrases） | 276 |
+| 可选音频（谚语子集） | 273 |
 
-> If you later expand to “1000 sentences (Uy 500 + Zh 500)”, update the table and release notes accordingly.
+> 若你后续升级为“1000句（维500+汉500）”，只需更新本表与 release 说明即可。
 
-### File formats (recommended)
-- `TSV/CSV` for main parallel pairs
-- `JSONL` for richer metadata & downstream pipelines
-- `M4A/WAV` for optional audio subset (proverbs)
-
-### Recommended fields (schema)
-- `id`: stable record ID (e.g., `P0001` / `D0001` or numeric)
-- `uy`: Uyghur text (UTF-8, RTL-safe)
-- `zh`: Chinese text (UTF-8)
-- `subset`: `proverb` / `daily_phrase`
-- `source_type`: `online` / `field`
-- `tags`: minimal topic tags (optional)
-- `audio_file`: filename for proverb audio (optional)
-- `license_flag`: `public` / `restricted` (if you separate release scope)
+### 字段设计（推荐 schema）
+每条样本建议包含以下字段（TSV/JSONL 均可）：
+- `id`：稳定唯一编号（如 `P0001`/`D0001` 或纯数字）
+- `uy`：维吾尔文文本（UTF-8）
+- `zh`：中文文本（UTF-8）
+- `subset`：`proverb` / `daily_phrase`
+- `source_type`：`online` / `field`
+- `tags`：最小主题标签（可选）
+- `audio_file`：音频文件名（可选，仅谚语子集）
+- `license_flag`：`public` / `restricted`（若存在不可公开来源，用于区分发布范围）
 
 ---
 
-## Repository Structure
+## 仓库结构（建议）
 
 ```text
-UyZh-FolkSpeech549/
+UyZh-FolkSpeech/
   README.md
   README_EN.md
   LICENSE
@@ -78,14 +69,14 @@ UyZh-FolkSpeech549/
 
   data/
     processed/
-      uyzh_folkspeech549.tsv
-      uyzh_folkspeech549.jsonl
+      uyzh_folkspeech.tsv
+      uyzh_folkspeech.jsonl
     splits/
       train_ids.txt
       dev_ids.txt
       test_ids.txt
 
-  audio/                      # optional (proverb subset)
+  audio/                      # 可选（谚语子集）
     m4a/
       0001.m4a
       ...
@@ -100,7 +91,106 @@ UyZh-FolkSpeech549/
     load_data.py
     qc_checks.py
     make_splits.py
-    eval_bleu.py              # optional
+    eval_bleu.py              # 可选：MT 评测示例
+
+  paper/
+    manuscript.docx
+    figures/
+    tables/
+<!-- =======================
+UyZh-FolkSpeech README (ZH)
+Save as: README.md
+======================= -->
+
+<div align="center">
+
+# UyZh-FolkSpeech
+
+**面向低资源场景的维吾尔语–汉语平行短句数据集（谚语 + 日常表达，可选配套录音）**
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+![Language](https://img.shields.io/badge/Language-%E7%BB%B4%E5%90%BE%E5%B0%94%E8%AF%AD%20%7C%20%E6%B1%89%E8%AF%AD-brightgreen)
+![Task](https://img.shields.io/badge/Task-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%20%7C%20NLP%20%7C%20%E8%AF%AD%E9%9F%B3-informational)
+
+[中文主页](README.md) • [English](README_EN.md) • [数据集](#数据集) • [快速开始](#快速开始) • [引用](#引用) • [联系](#联系)
+
+</div>
+
+---
+
+## 更新日志
+- **2026-01**：发布 UyZh-FolkSpeech 初版（平行短句 + 元数据；谚语子集可选音频）。
+
+---
+
+## 项目简介
+
+**UyZh-FolkSpeech** 是一个面向低资源场景的**维吾尔语–汉语平行短句数据集**，聚焦新疆地区常见的**民间谚语**与**日常口语表达**，面向机器翻译、跨语言检索、对话系统与（可选）语音相关任务的训练与评测。
+
+数据通过 **OCR/转写 → 人工校对 → 句级对齐 → 规范化清洗 → 质量检查** 的流水线整理；对于谚语子集，可选提供**创作者录音**与清单映射（manifest），以支持可复现的语音实验与多模态研究。
+
+---
+
+## 数据集
+
+### 数据规模（按你最终版本改）
+| 项目 | 数量 |
+|---|---:|
+| 平行记录总数 | 549 |
+| 谚语（proverbs） | 273 |
+| 日常表达（daily phrases） | 276 |
+| 可选音频（谚语子集） | 273 |
+
+> 若你后续升级为“1000句（维500+汉500）”，只需更新本表与 release 说明即可。
+
+### 字段设计（推荐 schema）
+每条样本建议包含以下字段（TSV/JSONL 均可）：
+- `id`：稳定唯一编号（如 `P0001`/`D0001` 或纯数字）
+- `uy`：维吾尔文文本（UTF-8）
+- `zh`：中文文本（UTF-8）
+- `subset`：`proverb` / `daily_phrase`
+- `source_type`：`online` / `field`
+- `tags`：最小主题标签（可选）
+- `audio_file`：音频文件名（可选，仅谚语子集）
+- `license_flag`：`public` / `restricted`（若存在不可公开来源，用于区分发布范围）
+
+---
+
+## 仓库结构（建议）
+
+```text
+UyZh-FolkSpeech/
+  README.md
+  README_EN.md
+  LICENSE
+  CITATION.cff
+  CHANGELOG.md
+
+  data/
+    processed/
+      uyzh_folkspeech.tsv
+      uyzh_folkspeech.jsonl
+    splits/
+      train_ids.txt
+      dev_ids.txt
+      test_ids.txt
+
+  audio/                      # 可选（谚语子集）
+    m4a/
+      0001.m4a
+      ...
+    audio_manifest.tsv
+
+  metadata/
+    schema.json
+    sources.csv
+    stats/
+
+  scripts/
+    load_data.py
+    qc_checks.py
+    make_splits.py
+    eval_bleu.py              # 可选：MT 评测示例
 
   paper/
     manuscript.docx
