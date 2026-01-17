@@ -5,7 +5,7 @@ Copy to: README.md
 
 <div align="center">
 
-# UyZh-FolkSpeech549
+# UyZh-FolkSpeech
 
 **A Uyghur–Chinese parallel dataset of proverbs and daily phrases (with optional creator-recorded audio)**
 
