@@ -7,9 +7,10 @@ File: README.md
 
 # UyZh-FolkSpeech
 
-**面向低资源场景的维吾尔语–汉语平行短句数据集（谚语与日常表达 + 配套音频）**
+**包含谚语、日常表达与常用词条的维吾尔语–汉语平行数据集（四位说话人录音全覆盖）**
 
 [![Code License](https://img.shields.io/badge/Code%20License-Apache%202.0-blue.svg)](LICENSE)
+[![Data License](https://img.shields.io/badge/Data%20License-CC%20BY%204.0-green.svg)](DATA_LICENSE)
 ![Languages](https://img.shields.io/badge/Languages-Uyghur%20%7C%20Chinese-brightgreen)
 ![Tasks](https://img.shields.io/badge/Tasks-MT%20%7C%20NLP%20%7C%20Speech-informational)
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-kalimustafa-yellow)](https://huggingface.co/?activityType=all&feedType=org&entity=kalimustafa)
@@ -20,14 +21,24 @@ File: README.md
 
 ---
 
+## 更新日志
+- **2026-01**：发布 UyZh-FolkSpeech 版本更新（文本与音频全量对齐，结构与清单文件同步整理）。
+
+---
+
 ## 项目简介
 
-**UyZh-FolkSpeech** 是一个面向低资源场景的**维吾尔语–汉语平行短句数据集**，聚焦新疆地区常见的**民间谚语**与**日常口语表达**，支持机器翻译、跨语言检索、对话系统与语音相关任务的训练与评测。
+**UyZh-FolkSpeech** 是一个面向低资源场景的**维吾尔语–汉语**资源，覆盖：
+- **953** 条维汉短句对（谚语与日常表达）
+- **1,031** 条常用词与短语条目
 
-数据经由统一流程整理：**OCR/转写 → 人工校对 → 句级对齐 → 规范化清洗 → 质量检查**。  
-谚语子集提供配套音频，并通过清单文件（manifest）实现**文本与音频的一一映射**，便于复现与下游使用。
+所有条目均分配不可变 ID：
+- 短句对：`UYZH-S-*`
+- 词与短语：`UYZH-W-*`
 
-本项目由**西北民族大学**创建支持。
+每个条目均提供 **4 位母语说话人录音**（S01–S04，两男两女），用于机器翻译、语音增强 NLP、ASR 与语音到文本翻译等任务的训练与评测。
+
+音频格式统一为 **M4A（AAC-LC），48 kHz，单声道**，并通过清单文件（manifest）实现文本与音频的一一映射，便于复现与下游处理。
 
 ---
 
@@ -36,22 +47,25 @@ File: README.md
 ### 数据规模
 | 项目 | 数量 |
 |---|---:|
-| 平行记录总数 | 1098 |
-| 谚语（proverbs） | 546 |
-| 日常表达（daily phrases） | 552 |
-| 音频（对应谚语） | 546 |
+| 文本条目总数 | 1,984 |
+| 短句对（谚语与日常表达） | 953 |
+| 常用词与短语条目 | 1,031 |
+| 每条目说话人数 | 4（S01–S04） |
+| 音频片段总数 | 7,936 |
 
-### 字段设计（TSV/JSONL）
+### 字段设计（TSV 推荐）
 | 字段 | 类型 | 说明 |
 |---|---|---|
-| `id` | string | 稳定唯一编号 |
+| `id` | string | 不可变记录 ID（`UYZH-S-*` / `UYZH-W-*`） |
+| `subset` | string | `sentence` / `word_phrase`（或更细标签） |
 | `uy` | string | 维吾尔文文本（UTF-8） |
 | `zh` | string | 中文文本（UTF-8） |
-| `subset` | string | `proverb` / `daily_phrase` |
-| `source_type` | string | `online` / `field` |
-| `tags` | string/list | 最小主题标签 |
-| `audio_file` | string | 音频文件名（与清单映射） |
-| `license_flag` | string | `public` / `restricted` |
+| `source_type` | string | `online` / `field`（如已提供） |
+| `tags` | string/list | 最小主题标签（如已提供） |
+
+音频清单（`audio_manifest.tsv`）建议至少包含：
+- `id`、`speaker`、`path`、`duration`
+- `sample_rate`（固定 48000）、`channels`（固定 1）、`codec`（aac-lc）、`bitrate`（或目标比特率）
 
 ---
 
@@ -62,40 +76,33 @@ UyZh-FolkSpeech/
   README.md
   README_EN.md
   LICENSE
+  DATA_LICENSE
   CITATION.cff
   CHANGELOG.md
 
   data/
-    processed/
-      uyzh_folkspeech.tsv
-      uyzh_folkspeech.jsonl
-    splits/
-      train_ids.txt
-      dev_ids.txt
-      test_ids.txt
+    uyzh_bilingual_pairs.tsv          # 953 条短句对
+    common_words_1031.tsv             # 1,031 词/短语
+    documents_metadata.csv            # 元数据（如已提供）
 
   audio/
-    m4a/
-      0001.m4a
-      ...
-    audio_manifest.tsv
+    S01/
+    S02/
+    S03/
+    S04/
+    audio_manifest.tsv                # 文本 ID 与音频文件映射 + 技术参数
 
-  metadata/
-    schema.json
-    sources.csv
-    stats/
+  splits/
+    train/
+    valid/
+    test/
+    eval50_ids.txt                    # 固定评测子集（如论文使用）
 
   scripts/
-    load_data.py
-    qc_checks.py
-    make_splits.py
-    eval_bleu.py
+    *.py
+  configs/
+    *.yaml
 
   paper/
-    manuscript.docx
-    figures/
-    tables/
-
-
-
+    UyZh-FolkSpeech_2026-01-26.docx
 
