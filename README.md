@@ -13,16 +13,12 @@ File: README.md
 [![Data License](https://img.shields.io/badge/Data%20License-CC%20BY%204.0-green.svg)](DATA_LICENSE)
 ![Languages](https://img.shields.io/badge/Languages-Uyghur%20%7C%20Chinese-brightgreen)
 ![Tasks](https://img.shields.io/badge/Tasks-MT%20%7C%20NLP%20%7C%20Speech-informational)
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-kalimustafa-yellow)](https://huggingface.co/?activityType=all&feedType=org&entity=kalimustafa)
+[![HF Dataset](https://img.shields.io/badge/HuggingFace-Dataset-yellow)](https://huggingface.co/datasets/mustafakali/UyZh-FolkSpeech)
+[![HF Org](https://img.shields.io/badge/HuggingFace-Org-yellow)](https://huggingface.co/?activityType=all&feedType=org&entity=kalimustafa)
 
 [中文主页](README.md) · [English](README_EN.md) · [数据集](#数据集) · [文件结构](#文件结构) · [快速开始](#快速开始) · [引用](#引用) · [联系](#联系)
 
 </div>
-
----
-
-## 更新日志
-- **2026-01**：发布 UyZh-FolkSpeech 版本更新（文本与音频全量对齐，结构与清单文件同步整理）。
 
 ---
 
@@ -43,6 +39,9 @@ File: README.md
 ---
 
 ## 数据集
+
+### 一键直连（Hugging Face）
+- **Hugging Face Dataset**：https://huggingface.co/datasets/mustafakali/UyZh-FolkSpeech
 
 ### 数据规模
 | 项目 | 数量 |
@@ -94,9 +93,7 @@ UyZh-FolkSpeech/
 
   splits/
     train/
-    valid/
-    test/
-    eval50_ids.txt                    # 固定评测子集（如论文使用）
+
 
   scripts/
     *.py
